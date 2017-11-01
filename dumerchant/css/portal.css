@@ -1,0 +1,48 @@
+html,
+body {
+  min-width:350px;
+  height: 100%;
+  font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+  font-size:12px;
+  background:#f1f1f1;
+}
+
+.portal{
+width:350px;
+height:280px;
+position: absolute;
+top:0;
+bottom: 0;
+left: 0;
+right: 0;
+margin: auto;
+padding:30px;
+background:#fff url('../img/logi0n_lock.jpg') no-repeat left center;
+border:1px solid #ccc;
+}
+
+.portal h2{
+margin:0px 0px;
+padding:0px;
+font-size:20px;
+font-weight:bold;
+color:#0072C6;
+border-bottom:0px solid #ccc;
+}
+
+.portal p{
+margin-top:10px;
+}
+
+.vform{
+
+
+}
+
+p.form_error{
+margin:0px;
+padding:2px 0px;
+font-size:11px;
+color:red;
+}
+.clear{clear:both;}
