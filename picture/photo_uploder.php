@@ -21,5 +21,4 @@
 	else{
 		  echo "5"; die;
 		}
-	//test comment
 ?>
