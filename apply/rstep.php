@@ -54,7 +54,22 @@
 						   </tbody>
                         </table>
                         <br />
-						
+								<div class="widget-header">
+								<div style="font-size:25px;text-align:center;color:#A27126;"> 
+
+									<div class="alert alert-danger warning_big" style="text-align:left;">
+									   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+										<ul style="text-align:left; font-size:15px;" >
+											<li>এস.এস.সি এর রেজিস্ট্রেশন নং, বিভাগ এবং জি পি এ পূরনের ক্ষেত্রে সতর্কতা অবলম্বন করুন।  </li>
+											<li>ভুল তথ্য প্রদানকারীকে জরিমানার মাধ্যমে সংশোধন করতে হবে ।</li>
+											<li>অসত্য তথ্য প্রদানকারীর বিরুদ্ধে আইনানূগ ব্যবস্থা নেওয়া হবে।</li>
+											
+
+										</ul>
+									
+									</div>                    
+								</div>
+								</div> 
 					  <table class="table table-striped  table-bordered" style="margin:0px;font-size:14px;">
 						<thead>
 						 <tr style='backgroud:#3276B1;'>
@@ -103,17 +118,17 @@
 								<select  class="form-control" required id="ssccgpa" name="ssccgpa">
 								 <option value=""> >--Select--< </option>
 								  <?php for($i=0; $i<=9; $i++){ ?>
-								 <option value="3.0<?php echo $i; ?>"> 1.0<?php echo $i; ?> </option>
+								 <option value="1.0<?php echo $i; ?>"> 1.0<?php echo $i; ?> </option>
 								 <?php } ?>
 								 <?php for($i=10; $i<=99; $i++){ ?>
-								 <option value="3.<?php echo $i; ?>"> 1.<?php echo $i; ?> </option>
+								 <option value="1.<?php echo $i; ?>"> 1.<?php echo $i; ?> </option>
 								 <?php } ?>
 								
 								 <?php for($i=0; $i<=9; $i++){ ?>
-								 <option value="3.0<?php echo $i; ?>"> 2.0<?php echo $i; ?> </option>
+								 <option value="2.0<?php echo $i; ?>"> 2.0<?php echo $i; ?> </option>
 								 <?php } ?>
 								 <?php for($i=10; $i<=99; $i++){ ?>
-								 <option value="3.<?php echo $i; ?>"> 2.<?php echo $i; ?> </option>
+								 <option value="2.<?php echo $i; ?>"> 2.<?php echo $i; ?> </option>
 								 <?php } ?>
 								 <?php for($i=0; $i<=9; $i++){ ?>
 								 <option value="3.0<?php echo $i; ?>"> 3.0<?php echo $i; ?> </option>

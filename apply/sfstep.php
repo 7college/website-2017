@@ -53,15 +53,13 @@
 			window.location='index.php?act=apply/fstep';
 			}
 			else if(response==402){
-				alert('Sorry! Data Save Error, Please try again.');
+				alert('দুঃখিত আপনি উক্ত মোবাইল নম্বর ব্যবহারের মাধ্যমে ইতোমধ্যে আবেদন করেছেন।');
 				window.location='index.php?act=apply/verify';
 			}
 		 }
 	}	 
 
 
-	
-	
 
 	
  </script>
@@ -106,12 +104,35 @@
               
 			  
 			  
+					<div class="widget-header">
+					<div style="font-size:25px;text-align:center;color:#A27126;"> 
+
+						<div class="alert alert-danger warning_big" style="text-align:left;">
+						   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<ul style="text-align:left; font-size:15px;" >
+								<li>আবেদনকারী যদি কোটা প্রাপ্ত হয় কোটা ড্রপডাউন অপশন থেকে পছন্দের কোটা নির্বাচন করতে হবে।  </li>
+								<li>আবেদনকারীকে নিজের অথবা অভিভাবকের মোবাইল নম্বর প্রদান করতে হবে। পরবর্তী সকল তথ্য ও নির্দেশনা উক্ত মোবাইল নম্বরে জানিয়ে দেয়া হবে।</li>
+								<li>আবেদনকারীকে অবশ্যই সঠিক জন্মতারিখ প্রদান করতে হবে।</li>
+								<li>আবেদনকারীকে অবশ্যই যথাযথ নির্দেশনা মেনে ছবি আপলোড করতে হবে।</li>
+								<li>সাবমিট বাটনে ক্লিক করার পূর্বে অবশ্যই সকল তথ্য সঠিক কিনা তা যাচাই বাছাই করে নিতে হবে।</li>
+								<li>ভুল তথ্য প্রদানকারীকে জরিমানার মাধ্যমে তথ্য সংশোধন করতে হবে ।</li>
+
+								
+
+							</ul>
+						
+						</div>                    
+					</div>
+					</div> 
+			  
 			   <div class="col-md-6" style="padding:0px; margin:0px;">
                         <table class="table table-striped table-hover table-bordered" style="margin:0px;font-size:14px;">
                             <tr><td><b>Applicant's Name:</b></td><td><?php echo $row['name']?></td></tr>
                             <tr><td><b>Father`s Name:</b></td><td><?php echo $row['fname']?></td></tr>
 							<tr><td><b>Mother`s Name:</b></td><td><?php echo $row['mname']?></td></tr>
 							<tr><td><b>Gender:</b></td><td><?php echo $gender[$row['sex']]; ?></td></tr>
+							<tr><td><b>Total GPA:</b></td><td><?php echo $_SESSION['ssccgpa']+$row['gpa']; ?></td></tr>
+							
 							
                         </table>
                         

@@ -36,13 +36,10 @@ include('dumerchant/login/config/common_array.php');
 			  include($page);
 		  }
 		  else{
-			  if($_SESSION['id']!=''){
-				  include('process/finalprofile.php');
-			  }
-			  else{
+			 
 			   include('apply/verify.php');
 			  }
-		  }
+		  
 		?>
 		
 	</div>

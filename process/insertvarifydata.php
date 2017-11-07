@@ -7,7 +7,7 @@
 		$sqlcheckrow=mysql_query("SELECT * FROM  fbs_applicant_data WHERE hscroll='".db_escape($hscroll)."' AND hscpass='2017' AND hscboard='".db_escape($hscboard)."'");
 		$count=mysql_num_rows($sqlcheckrow);
 		if($count==1){
-			echo '102'; die; 
+			echo '402'; die; 
 		}	
 		else{	
 			

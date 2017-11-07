@@ -13,11 +13,12 @@ nav ul li a: hover { color:#006633; }
         <?php } else{?>
 		<li class="x"><a href="index.php" style='font-weight:bolder; color:white; margin-top:8px;'>Home</a></li>
 		<?php } ?>
-		<li><a href="index.php?act=apply/notice" style='font-weight:bolder;color:white;  margin-top:8px;'> Notice </a></li>
+		<li><a href="index.php?act=apply/pstatus" style='font-weight:bolder;color:white;  margin-top:8px;'>  Payment Status </a></li>
+		<li><a href="index.php?act=apply/appsrecovery" style='font-weight:bolder;color:white;  margin-top:8px;'> Forgot Application ID </a></li>
          <?php if($_SESSION['applicationid']!=''){ ?>
 		   <li><a href="process/logout.php" style='font-weight:bolder;color:white;  margin-top:8px;'>Logout</a></li>
 		 <?php } else { ?>
-		   <li><a href="index.php?act=apply/verify"style='font-weight:bolder;color:white;  margin-top:8px;'> Login</a></li>
+		   <li><a href="index.php?act=apply/login"style='font-weight:bolder;color:white;  margin-top:8px;'> Login</a></li>
 		 <?php } ?>
     </ul>
   </div>

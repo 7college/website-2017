@@ -1,134 +1,22 @@
-<?php 
-	session_start();
-	if(isset($_SESSION['applicationid'])==""){  echo "<script>location='process/logout.php'</script>";}
+     <style>#page a { text-decoration:none;cursor:pointer;color:#fff;padding:5px; background:#0072C6;}	</style>
 
-	include('dumerchant/login/config/config.php');
-	$sql=mysql_query("SELECT * FROM fbs_applicant_data WHERE application_id='".db_escape($_SESSION['applicationid'])."'");
-	$row=mysql_fetch_assoc($sql); 
-
-?>
-<script>
-   function fnc_unit_check(uid)
-   {
-	   	var con=confirm('Are you sure select this unit?');
-		if(con==true){
-		var appsid=$('#appsid').val();
-		var pid=$('#pid').val();
-		var uid=uid;
-		var data ="action=save_unit_data&appsid="+appsid+"&pid="+pid+"&uid="+uid;
-		http.open( "POST","process/insertunitdata.php",true);
-		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		http.onreadystatechange =fnc_unit_check_response;
-		http.send(data); 
-		}
-	}
-	function fnc_unit_check_response()
-	{
-		if(http.readyState == 4)
-		{ 
-			var response=http.responseText;
-			if(response==104){
-			window.location='index.php?act=apply/fstep';
-			}
-			else if(response==404){
-				alert('Sorry! Data Save Error, Please try again.');
-			    window.location='index.php?act=apply/fstep';
- 			}
-		 }
-	}
- function fnc_apply_for_degree(val){
-        var con=confirm('Are you sure apply for degree?');
-		if(con==true){
-		
-		var data ="action=save_degree_data&appsid="+val;
-		http.open( "POST","process/insertunitdata.php",true);
-		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		http.onreadystatechange =fnc_apply_for_degree_response;
-		http.send(data); 
-		}
-	 
- }
-
- function fnc_apply_for_degree_response()
-	{
-		if(http.readyState == 4)
-		{ 
-			var response=http.responseText;
-			if(response==105){
-			window.location='index.php?act=apply/fstep';
-			}
-			else if(response==404){
-				alert('Sorry! Data Save Error, Please try again.');
-			    window.location='index.php?act=apply/fstep';
- 			}
-	   }	
-	}
+	<?php 
+		include('../../config/config.php');
+		include('../../config/common_array.php');
+		extract($_REQUEST);
+		 $sql=mysql_query("select * from  fbs_applicant_data WHERE application_id='$appsid' or mobile='$mobileno'") or die(); 
+         $row=mysql_fetch_assoc($sql);
+		 $count=mysql_num_rows($sql);
+		 if($count==0){
+			 echo "<h1>Data Not Found.</h1>";
+		 }else{
+     ?>
 	
-  function fnc_unit_data_dnl(valdata){
-	  
-	   //alert('Today after 5:00 PM you will get the pay slip.'); return;
-	   var dataval=valdata.split('##');
-		var data ="action=save_unit_payslip&appsid="+dataval[0]+"&unitid="+dataval[1];
-		http.open( "POST","apply/pay/payslip.php",true);
-		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		http.onreadystatechange =fnc_unit_data_dnl_response;
-		http.send(data);
-	  
-  }	
-  
-   function fnc_unit_data_dnl_response()
-	{
-		if(http.readyState == 4)
-		{ 
-			var response=http.responseText;
-		    window.open(response,'_blank');
-
-		
-	   }	
-	}
-	
-</script>	
-<section class="main">
-                <div class="container">
-                    <div class="row">
-                    <div class="container">
-                    <?php include("process/uppermenu.php"); ?>  
-                    <div class="col-md-12" style="padding:0px; margin:0px;">
-                    <div class="widget">
-          <div class="panel panel-primary" style="margin:0px; padding:0px;">
-                  <div class="panel-heading"  style=" font-weight:bolder; color:#fff; font-size:16px;">
-                    Applicant's Dashboard 
-                  </div>
-				 
-				<div class="panel-body">
-			  	
-                 <div class="widget-header">
-                    <div style="font-size:25px;text-align:center;color:#A27126;"> 
-                    
-                            <div class="alert alert-warning warning_big" style="text-align:left;">
-                           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <strong><i class="fa fa-exclamation-triangle fa-lg fa-2x" aria-hidden="true"></i> UNIT সিলেকশন এবং টাকা জমা দেয়ার    নিয়মাবলী :</strong><br/><br/>
-                            <ul style="text-align:left; font-size:15px;" >
-                                <li> যে  UNIT এ  আবেদন করতে চান তার পাশের Apply  Button  ক্লিক করুন ।  যদি  N/A থাকে তাহলে আপনি আবেদনের জন্য যোগ্য নয় ।</li>
-                                <li>পেমেন্ট স্লিপের অপশন থেকে  PAY SLIP DOWNLOAD করে নিন । </li>
-                                <li> Sonali Bank Limited (Online  Branch ) যে কোন শাখা থেকে ১৪/১১/২০১৭   তারিখের  মধ্যে টাকা জমা দেয়া যাবে।</li>
-								<li>টাকা জমা দেয়ার ৪৮ ঘন্টার  মধ্যে  Payment Status আপডেট হবে ।</li>
-								<li>পেমেন্ট স্লিপ প্রিন্ট করার ব্যবস্থা  থাকতে হবে।</li>
-                            </ul>
-                            
-                            </div>                    
-                    </div>
-                </div>       
-               </div>    
-				  
-				  
-				  
-              <div class="panel-body">
-			  
-			           
-                     
+                        
+                     <div class="table-responsive">
+                           <div class="panel-body">
                             <table class="table table-striped table-hover table-bordered" style="margin:0px;font-size:14px;">
-                                <tr><td><b>Application ID:</b></td><td><b><?php echo $row['application_id']?></b></td><td rowspan="8" width='190'><img src="picture/<?php echo $row['picture']?>" style="height:180px; width:170px;  border:2px solid green; "/></td></tr>
+                                <tr><td><b>Application ID:</b></td><td><b><?php echo $row['application_id']?></b></td><td rowspan="8" width='190'><img src="../../picture/<?php echo $row['picture']?>" style="height:180px; width:170px;  border:2px solid green; "/></td></tr>
                                 <tr><td><b>Applicant's Name:</b></td><td><?php echo $row['name']?></td></tr>
                                 <tr><td><b>Father`s Name:</b></td><td><?php echo $row['fname']?></td></tr>
                                 <tr><td><b>Mother`s Name:</b></td><td><?php echo $row['mname']?></td></tr>
@@ -139,26 +27,10 @@
                             </table>
                             <br /><br />
                        			
-                           <input type='hidden' value="<?php echo $row['application_id']; ?>" name='appsid' id='appsid'/>								
-                           <input type='hidden' value="<?php echo time(); ?>" name='pid' id='pid'/>								
+                          							
                        			
 
-<div class="widget-header">
-		<div style="font-size:25px;text-align:center;color:#A27126;"> 
-		
-				<div class="alert alert-danger warning_big" style="text-align:left;">
-			   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<b>
-				<ul style="text-align:left; font-size:15px;" >
-					<li>আপনি পেমেন্ট করতে যথাযথভাবে সমর্থ হলে পেমেন্ট স্ট্যাটাস বক্সে সবুজ টিক চিহ্ন দেখা যাবে।</li>
-					<li>Admit Card এর উত্তোলনের তারিখ আগামী ২০/১১/২০১৭ তারিখের মধ্যে ওয়েবসাইটের নোটিশ বোর্ডের মাধ্যমে জানিয়ে দেয়া হবে।</i>
-					<li>যেকোন একটি স্নাতক ইউনিটে আবেদনের পর ডিগ্রী পাস কোর্সের আবেদন গ্রহনযোগ্য হবে।</li>
-					<li>যারা স্নাতক সমমান কোর্সে সুযোগ পাবে না ডিগ্রী পাস কোর্সের আবেদনের প্রেক্ষিতে যোগ্য প্রার্থীকে ভর্তির সুযোগ প্রদান করা হবে।</li>
-				</ul>
-				</b>
-				</div>                    
-		</div>
-	</div> 
+
 								
                            <table class="table table-striped table-hover table-bordered">
                                 <thead>
@@ -202,7 +74,7 @@
 										
 									?>
 									
-                                    <th style='text-align:center;'><?php if($countrow1>0) {  echo '<span class="glyphicon glyphicon-ok-sign" style="font-size:25px; color:green;"> </span>'; } else { echo 'Unpaid'; }?></th>
+                                    <th style='text-align:center;'><?php if($countrow1==1) {  echo '<span class="glyphicon glyphicon-ok-sign" style="font-size:25px; color:green;"> </span>'; } else { echo 'Unpaid'; }?></th>
 									
 									
 									<th style='text-align:center;'>--</th>
@@ -236,7 +108,7 @@
 
 										?>
 									
-                                    <th style='text-align:center;'><?php if($countrow2>0) {  echo '<span class="glyphicon glyphicon-ok-sign" style="font-size:25px; color:green;"> </span>'; } else { echo 'Unpaid'; }?></th>									
+                                    <th style='text-align:center;'><?php if($countrow2==1) {  echo '<span class="glyphicon glyphicon-ok-sign" style="font-size:25px; color:green;"> </span>'; } else { echo 'Unpaid'; }?></th>									
 									<th style='text-align:center;'>--</th>
 									<th style='text-align:center;'>--</th>
 									<th style='text-align:center;'>--</th>
@@ -264,14 +136,13 @@
 									
 	
 									<?php
-									   // echo "SELECT a.amount FROM  fbs_payment a,fbs_unit_data b  WHERE a.aid=b.appsid and a.pid=b.payid a.aid='".mysql_real_escape_string($row['application_id'])."' AND a.pid='".mysql_real_escape_string($rowsdata3['payid'])."' AND b.unitid='3'";
-										$sqlcheckpayd3=mysql_query("SELECT a.amount FROM  fbs_payment a,fbs_unit_data b  WHERE a.aid=b.appsid and a.pid=b.payid and a.aid='".mysql_real_escape_string($row['application_id'])."' AND a.pid='".mysql_real_escape_string($rowsdata3['payid'])."' AND b.unitid='3'");
+										$sqlcheckpayd3=mysql_query("SELECT a.amount FROM  fbs_payment a,fbs_unit_data b  WHERE a.aid=b.appsid and a.pid=b.payid a.aid='".mysql_real_escape_string($row['application_id'])."' AND a.pid='".mysql_real_escape_string($rowsdata3['payid'])."' AND b.unitid='3'");
 										$countrow3=mysql_num_rows($sqlcheckpayd3);
 										
 									?>
 									
-                                    <th style='text-align:center;'><?php if($countrow3>0) { echo '<span class="glyphicon glyphicon-ok-sign" style="font-size:25px; color:green;"> </span>'; } else { echo 'Unpaid'; }?></th>
-									<th style='text-align:center;'>--</th>
+                                    <th style='text-align:center;'><?php if($countrow3==1) { echo '<span class="glyphicon glyphicon-ok-sign" style="font-size:25px; color:green;"> </span>'; } else { echo 'Unpaid'; }?></th>
+																		<th style='text-align:center;'>--</th>
 									<th style='text-align:center;'>--</th>
 									<th style='text-align:center;'>--</th>
                                  </tr>     
@@ -325,10 +196,6 @@
                            
                            
                     </div>
-            </div>
-        </div>
-        </div>
-        </div>
-        </div>
-</section>
-
+            </div>  
+		 <?php } ?>
+                             

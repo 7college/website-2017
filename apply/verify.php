@@ -1,8 +1,9 @@
 <script type="text/javascript">
 	function fnc_check_result()
 	{
-		if(fn_validation('hsc_roll*hsc_pass_year*board*ssc_roll*ssc_pass_year*sscboard')==0) return;
+		if(fn_validation('hsc_roll*hsc_reg*hsc_pass_year*board*ssc_roll*ssc_pass_year*sscboard')==0) return;
 		var hsc_roll=$('#hsc_roll').val();
+		var hsc_reg=$('#hsc_reg').val();
 		var hsc_pass_year=$('#hsc_pass_year').val();
 		var hboard=$('#board').val();
 		var ssc_roll=$('#ssc_roll').val();
@@ -11,7 +12,7 @@
 	    
 		
 		
-		var data ="action=actionquaerypages&hsc_roll="+hsc_roll+"&hsc_pass_year="+hsc_pass_year+"&board="+hboard+"&ssc_roll="+ssc_roll+"&ssc_pass_year="+ssc_pass_year+"&sscboard="+sscboard;
+		var data ="action=actionquaerypages&hsc_roll="+hsc_roll+"&hsc_reg="+hsc_reg+"&hsc_pass_year="+hsc_pass_year+"&board="+hboard+"&ssc_roll="+ssc_roll+"&ssc_pass_year="+ssc_pass_year+"&sscboard="+sscboard;
 		//alert(data); return;
 		http.open( "POST","process/varification.php",true);
 		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
@@ -32,11 +33,12 @@
 			}
 			if(response==401)
 			{
-             alert('Please enter your valid Information.'); return;	
+			 $('#htmlmsg').html('<div class="alert alert-danger alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>দুঃখিত ! </strong> <b> আপনার এইচ .এস .সি রোল নাম্বার/ বোর্ড  ভুল আছে । সঠিক তথ্য প্রদান করুন ।</b></div>');
+			 return;
 			}
 			if(response==110)
 			{
-			 window.location='index.php?act=apply/fstep';
+			 $('#htmlmsg').html('<div class="alert alert-success alert-dismissable"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>ধন্যবাদ ! </strong> <b>আপনি ইতোমধ্যে সফলভাবে আবেদন করতে সক্ষম হয়েছেন। লগ ইন করার জন্য <a href="index.php?act=apply/login" style="color:white;"><button style="border-radius:2px; border:none; background:#428BCA; padding:10px 10px ; ">Login</button> </a> অপশনে যান।</b></div>');
 			}
 			
 
@@ -57,20 +59,20 @@
                     <div style="font-size:25px;text-align:center;color:#A27126;"> 
                     
                             <div class="alert alert-warning warning_big" style="text-align:left;">
-                           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <strong><i class="fa fa-exclamation-triangle fa-lg fa-2x" aria-hidden="true"></i> আবেদনপত্র পূরণের  পূর্ব প্রস্তুতি  ও   সতর্কবার্তাঃ</strong><br/><br/>
-                            <ul style="text-align:left; font-size:15px;" >
-                                <li> আবেদন ফরম পূরনের পূর্বে  ভর্তি প্রক্রিয়া ভালভাবে পড়ুন।</li>
-                                <li>ধীরস্থিরভাবে ফরম পূরণের প্রতিটি ধাপ সম্পন্ন করুন। যাতে কোনও প্রকার তথ্য ভুল না হয়।</li>
-								<li>অসত্য তথ্য প্রদানকারীর বিরুদ্ধে আইনানূগ ব্যবস্থা নেওয়া হবে।</li>
-                                <li>সদ্য তোলা রঙ্গিন ছবি (সাইজ ৩০০ x ৩০০ পিক্সেল , জেপিজি ফরমেট) এবং ১৫০ কেবি । </li>
-								<li>১১ ডিজিটের মোবাইল নম্বর । </li>
-								<li>পেমেন্ট স্লিপ প্রিন্ট করার ব্যবস্থা  থাকতে হবে।</li>
-								<li>জরুরি প্রয়োজনে যোগাযোগ করুন :
-                                                                                      মোবাইল  নং :+৮৮০১৮১৫১৫২৬১৫,০১৮৬৫৭৪৮০৭৩,০১৮৩৭৯৪০২২৭ ,০১৮৫৮১৩৬৬৫৮( ৯ টা হতে  ৭ টা ) </li>
+							   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<strong><i class="fa fa-exclamation-triangle fa-lg fa-2x" aria-hidden="true"></i> আবেদনপত্র পূরণের  পূর্ব প্রস্তুতি  ও   সতর্কবার্তাঃ</strong><br/><br/>
+								<ul style="text-align:left; font-size:15px;" >
+									<li> আবেদন ফরম পূরনের পূর্বে  ভর্তি প্রক্রিয়া ভালভাবে পড়ুন।</li>
+									<li>ধীরস্থিরভাবে ফরম পূরণের প্রতিটি ধাপ সম্পন্ন করুন। যাতে কোনও প্রকার তথ্য ভুল না হয়।</li>
+									<li>অসত্য তথ্য প্রদানকারীর বিরুদ্ধে আইনানূগ ব্যবস্থা নেওয়া হবে।</li>
+									<li>সদ্য তোলা রঙ্গিন ছবি (সাইজ ৩০০ x ৩০০ পিক্সেল , জেপিজি ফরমেট) এবং ১৫০ কেবি । </li>
+									<li>১১ ডিজিটের মোবাইল নম্বর । </li>
+									<li>পেমেন্ট স্লিপ প্রিন্ট করার ব্যবস্থা  থাকতে হবে।</li>
+									<li>টাকা জমা দেয়ার ৪৮ ঘন্টার  মধ্যে  Payment Status আপডেট হবে ।</li>
+									<li>জরুরি প্রয়োজনে যোগাযোগ করুন :
+									   হেল্প  লাইন  :+৮৮০১৮১৫১৫২৬১৫,০১৮৬৫৭৪৮০৭৩,০১৮৩৭৯৪০২২৭ ,০১৮৫৮১৩৬৬৫৮( ৯ টা হতে  ৬ টা ), শুক্রবার ব্যাতীত ।</li>
 
-                              
-                            </ul>
+								</ul>
                             
                             </div>                    
                     </div>
@@ -79,16 +81,21 @@
        
              <div class="panel panel-primary" style="margin:0px; padding:0px;">
                 <div class="panel-heading"  style=" font-weight:bolder; color:#fff; font-size:16px;">
-                                                 আপনি ভর্তি পরীক্ষায় অংশগ্রহণের জন্য উপযুক্ত কিনা তা জানার জন্য  অথবা লগইন করার জন্য নিম্নের তথ্যগুলো দিন
+                                                 আপনি ভর্তি পরীক্ষায় অংশগ্রহণের জন্য উপযুক্ত কিনা তা জানার জন্য এবং আবেদন  করার জন্য নিম্নের তথ্যগুলো দিন
                 </div>
                <div class="panel-body">
+			           <div  id='htmlmsg'></div>
                        <table class="table table-striped table-bordered  table-responsive" id="htmlserach"  data-page-length="50" width="100%"  data-order="[[ 1, &quot;asc&quot; ]]">
-                    
+                        
 						
 						<tr>
-                            <td rowspan="3" style="vertical-align:middle;"><b>HSC or Equivalent</b></td>
+                            <td rowspan="4" style="vertical-align:middle;"><b>HSC or Equivalent</b></td>
                             <td>Roll No.</td>
                             <td><input type="text" step="1" onpaste="return false" onkeypress="return checkaccnumber(event)" autocomplete="off" maxlength="8" class="form-control"  id="hsc_roll" name="hsc_roll" placeholder="HSC Roll No."></td>
+                        </tr>
+						<tr>
+                            <td>Reg. No.</td>
+                            <td><input type="text" step="1" onpaste="return false" onkeypress="return checkaccnumber(event)" autocomplete="off" maxlength="15" class="form-control"  id="hsc_reg" name="hsc_reg" placeholder="HSC Reg. No."></td>
                         </tr>
                         <tr>
                             <td>Passing Year</td>

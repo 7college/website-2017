@@ -50,18 +50,15 @@ $(document).ready(function() {
     
         <!--/. NAV TOP  -->
         <?php require_once("home/header.php")?>
-        <!-- /. NAV SIDE  -->
-		<?php require_once("home/menu.php")?>
-		  
-        <!-- /. NAV SIDE  -->
-		<div id="page-wrapper" style="padding:0px; max-height:600px; overflow:auto; ">
+        
+		<div  style="padding:0px;  max-height:600px; overflow:auto; ">
 		  
 		<?php
 		  if(isset($_GET['data'])){
 			 $page='pages/'.$_GET['data'].'.php';
 			 require_once($page);
 		  }else{
-			     require_once("pages/advancedsearch/college_deperatment_wise_search.php");
+			     require_once("pages/advancedsearch/boardresult.php");
 		  }
 		?>
 		</div>

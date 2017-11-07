@@ -1,35 +1,29 @@
 <?php
-    session_start();
-	include('../admin/login/config/config.php');
+	session_start();
+	include('../dumerchant/login/config/config.php');
+	include('../dumerchant/login/config/common_array.php');
 	extract($_POST);
 	if($action=='payment_varification'){
-		//echo $action; die;
-		//echo "SELECT * FROM combile_data WHERE mobile='$mobile' AND application_id='$appsid' AND unit='$unit'"; die;
-      $sql=mysql_query("SELECT * FROM combile_data WHERE mobile='$mobile' AND application_id='$appsid' AND unit='$unit'");
-	  $row=mysql_fetch_assoc($sql); 
-   	 $count=mysql_num_rows($sql);
+	$sqlcheckrow=mysql_query("SELECT * FROM  fbs_payment a,fbs_unit_data b  WHERE a.aid=b.appsid and a.pid=b.payid and  a.pid='".db_escape($pid)."' AND a.aid='".db_escape($appsid)."' AND b.unitid='".db_escape($unit)."'");
+	$chekrows=mysql_fetch_assoc($sqlcheckrow);
+	$count=mysql_num_rows($sqlcheckrow);
+	
+	
 	  if($count==1){
 	?>
 	  
-			<table class="table table-striped  table-bordered" style="margin:0px;font-size:14px;">
-					<tr><th colspan="4"  style="background:#DCEAF9;">Query Result</th></tr>
-					<tr>
-						<th>Name</th><td><?php echo $row['name']?></td>
-						<th>Application ID</th><td><?php echo $row['application_id']?></td>
-				    </tr>
-					<tr>
-						<th>Payment Status</th><td colspan='3'><?php if($row['payment']==1){ echo "<font color='green'>Paid</font>";} else { echo "<font color='red'>Unpaid</font>";} ?></td>
-				    </tr>
-				
-			</table>
+	    <div class="alert alert-success alert-dismissable">
+		  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  <strong>Congratulation!</strong> Your Payment Status Paid.
+		</div>
 		
  <?php
 	  }
       else { ?>
-            <table class="table table-striped  table-bordered" style="margin:0px;font-size:14px;">
-					<tr><th colspan="4"  style=" color:red;">Sorry data not found.</th></tr>
-				
-			</table>
+		<div class="alert alert-danger alert-dismissable">
+		  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		  <strong>Sorry!</strong> Invalid Payment Status
+		</div>
 <?php	  
 	}
 	}
